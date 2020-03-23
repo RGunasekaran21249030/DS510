@@ -8,9 +8,7 @@
 #           Retrieve the company name from the user.
 #           Retrieve the number of feet of fiber optic cable to be installed from the user.
 #           Calculate the installation cost of fiber optic cable by multiplying the total cost as the number of feet times by price by feet purchased.
-#               Price is $0.87 if purchased feet is less than are equal to 100
-#               Price is $0.80 if purchased feet is between 100 and 250
-#               Price is $0.70 if purchased feet is greater than 251
+#               Price is $0.87
 #               Print a receipt for the user including the company name, number of feet of fiber to be installed, the calculated cost, and total cost in a legible format.
 # Desc :    Program to calculate total cost of fiber cable installation
 # Usage :
@@ -18,18 +16,9 @@
 #           The program will calculate the cost of prints the receipt for the user
 import datetime
 
-# This function will return the cost of fiber cable per foot. It will help to change the price quickly and one place.
-def price_per_cable_feet(length_of_fiber_cable: int):
-    if 100 < length_of_fiber_cable <= 250:  # Purchased feet between 101 to 250 then price is 0.80
-        return 0.80
-    elif length_of_fiber_cable > 250:  # Purchased feet between 251 to 500 then price is 0.70
-        return 0.70
-    else:
-        return 0.87  # default value of $0.87
-
 # This function will calculate the total cost
-def calculate_total(length_of_fiber_cable: int, price_per_feet: float):
-    return length_of_fiber_cable * price_per_feet
+def calculate_total(length_of_fiber_cable: int):
+    return length_of_fiber_cable * 0.87 # 0.87 as price per feet
 
 # This function will print the customer receipt
 def print_receipt(company_name: str, length_of_fiber_cable: int, total_cost: float):
@@ -56,11 +45,8 @@ def main():
         except ValueError:
             print("Oops!  That was no valid number.  Try again...")
 
-    # Getting the price based on length of the feet
-    price_per_feet = price_per_cable_feet(length_of_fiber_cable)
-
     # calling function which returns the total price
-    total_cost = calculate_total(length_of_fiber_cable, price_per_feet)
+    total_cost = calculate_total(length_of_fiber_cable)
 
     # printing the receipt to the customer
     print_receipt(company_name, length_of_fiber_cable, total_cost)
